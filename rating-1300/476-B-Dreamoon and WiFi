@@ -1,0 +1,56 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    string in, com;
+    cin >> in >> com;
+    queue<int> q;
+    q.push(0);
+
+    // Simulate all possible states
+    for (char c : com) {
+        queue<int> temp;
+        if (c == '+') {
+            while (!q.empty()) {
+                temp.push(q.front() + 1);
+                q.pop();
+            }
+        } else if (c == '-') {
+            while (!q.empty()) {
+                temp.push(q.front() - 1);
+                q.pop();
+            }
+        } else { // '?'
+            while (!q.empty()) {
+                int value = q.front();
+                q.pop();
+                temp.push(value - 1);
+                temp.push(value + 1);
+            }
+        }
+        q = temp;
+    }
+
+    // Calculate intended start position
+    int start = 0;
+    for (char c : in) {
+        if (c == '+') start++;
+        if (c == '-') start--;
+    }
+
+    // Count matching states
+    int ans = 0, total = q.size();
+    while (!q.empty()) {
+        if (q.front() == start) ans++;
+        q.pop();
+    }
+
+    if (total == 0) {
+    cout << "0.0000000" << endl;
+} else {
+    cout << fixed << setprecision(12) << (double(ans) / total) << endl;
+}
+
+
+    return 0;
+}
