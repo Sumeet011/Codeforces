@@ -1,0 +1,75 @@
+// Online C++ compiler to run C++ program online
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int T;
+    cin >> T;
+    while (T--)
+    {
+        int n, k;
+        cin >> n >> k;
+        vector<int> p;
+        vector<int> N;
+        int n1 = n;
+        int k2 = k;
+
+        if (k > n)
+        {
+            cout << "NO" << endl;
+        }
+        else
+        {
+            bool flag = true;
+            bool flag1 = true;
+            while (k > 1)
+            {
+                p.push_back(2);
+                k--;
+                n -= 2;
+            }
+            p.push_back(n);
+            if (n % 2 != 0)
+            {
+                flag = false;
+            }
+
+            while (k2 > 1)
+            {
+                N.push_back(1);
+                n1--;
+                k2--;
+            }
+            N.push_back(n1);
+            if (n1 % 2 == 0)
+            {
+                flag1 = false;
+            }
+            sort(p.begin(), p.end());
+            sort(N.begin(), N.end());
+            if (p[0] > 0 && flag)
+            {
+                cout << "YES" << endl;
+                for (int i = 0; i < p.size(); i++)
+                {
+                    cout << p[i] << " ";
+                }
+                cout << endl;
+            }
+            else if (N[0] > 0 && flag1)
+            {
+                cout << "YES" << endl;
+                for (int i = 0; i < N.size(); i++)
+                {
+                    cout << N[i] << " ";
+                }
+                cout << endl;
+            }
+            else
+            {
+                cout << "NO" << endl;
+            }
+        }
+    }
+}
