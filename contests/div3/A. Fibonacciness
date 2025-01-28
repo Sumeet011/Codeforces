@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int t;
+    cin>>t;
+    while(t--){
+        vector<int> T(5);
+        for(int i=0;i<5;i++){
+            cin>>T[i];
+            if(i==1){
+                i++;
+            }
+        }
+        //CASE 1
+        T[2]=T[0]+T[1];
+        int ans=0;
+        int c=0;
+        for(int i=2;i<5;i++){
+            if(T[i]==T[i-1]+T[i-2]){
+                c++;
+            }
+        }
+        ans=max(ans,c);
+        c=0;
+        T[2]=T[3]-T[1];
+        for(int i=2;i<5;i++){
+            if(T[i]==T[i-1]+T[i-2]){
+                c++;
+            }
+        }
+        
+        ans=max(ans,c);
+        c=0;
+        T[2]=T[4]-T[3];
+        for(int i=2;i<5;i++){
+            if(T[i]==T[i-1]+T[i-2]){
+                c++;
+            }
+        }
+        
+        ans=max(ans,c);
+        cout<<ans<<endl;
+    }
+}
