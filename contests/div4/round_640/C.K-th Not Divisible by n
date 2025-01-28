@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main(){
+    int T;
+    cin>>T;
+    while(T--){
+        long long n,k;
+        cin>>n>>k;
+        long long group;
+        if(k%(n-1)==0){
+                group=(k/(n-1));
+
+        }
+        else{
+                group=(k/(n-1))+1;
+        }
+        long long start=n*(group-1)+1;
+        k-=(group-1)*(n-1);
+        while(k--){
+            start++;
+        }
+        cout<<start-1<<endl;
+    }
+
+}
