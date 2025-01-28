@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        vector<float> ans;
+        int Pos = 1; // Start with 1 (as 10^0 = 1)
+        int n;
+        cin >> n;
+        while (n) {
+            if (n % 10 != 0) {
+                ans.push_back((n % 10) * Pos);
+            }
+            n /= 10;
+            Pos *= 10; // Move to the next power of 10
+        }
+        cout << ans.size() << endl;
+        for (int i = ans.size() - 1; i >= 0; i--) {
+            cout << ans[i] << " ";
+        }
+        cout << endl;
+    }
+}
