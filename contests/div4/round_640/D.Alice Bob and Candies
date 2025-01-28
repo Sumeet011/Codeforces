@@ -1,0 +1,57 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int main() {
+    int t;  // Number of test cases
+    cin >> t;
+
+    while (t--) {
+        int n;  // Number of candies
+        cin >> n;
+
+        vector<int> candies(n);
+        for (int i = 0; i < n; i++) {
+            cin >> candies[i];  // Reading the size of each candy
+        }
+
+        int Prev = 0;    // Previous total of candies eaten by the other player
+        int x = 0;       // Total candies taken by Alice
+        int y = 0;       // Total candies taken by Bob
+        int moves = 0;   // Number of moves
+        int AM = 0;      // Accumulated candies for Alice in the current move
+        int BM = 0;      // Accumulated candies for Bob in the current move
+        bool turn = true;  // true -> Alice's turn, false -> Bob's turn
+        int IA = 0;      // Start index for Alice (from the left)
+        int JB = n - 1;  // Start index for Bob (from the right)
+
+        while (IA <= JB) {
+            if (turn) {  // Alice's turn
+                AM = 0;  // Reset AM for the new move
+                while (AM <= Prev && IA <= JB) {  // Alice eats candies until her sum > Prev
+                    AM += candies[IA];
+                    IA++;
+                }
+                x += AM;  // Add the candies Alice ate to her total
+                Prev = AM; // Update Prev to Alice's move total
+                turn = false; // Switch to Bob's turn
+            } else {  // Bob's turn
+                BM = 0;  // Reset BM for the new move
+                while (BM <= Prev && IA <= JB) {  // Bob eats candies until his sum > Prev
+                    BM += candies[JB];
+                    JB--;
+                }
+                y += BM;  // Add the candies Bob ate to his total
+                Prev = BM; // Update Prev to Bob's move total
+                turn = true; // Switch to Alice's turn
+            }
+            moves++;  // One move has been completed
+        }
+
+        // Print the results for the current test case: number of moves, total candies eaten by Alice, total candies eaten by Bob
+        cout << moves << " " << x << " " << y << endl;
+    }
+
+    return 0;
+}
