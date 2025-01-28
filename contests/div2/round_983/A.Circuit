@@ -1,0 +1,52 @@
+/**
+ * Author: Sumeet
+ */
+
+#include <bits/stdc++.h>
+using namespace std;
+
+// Macro for inputting an array (not used in this code)
+
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int tt;
+    cin >> tt; // Number of test cases
+    while (tt--) {
+        int n;
+        cin>>n; // Output the total cost for the test case
+        int l=0;
+        int h=0;
+        int zeros=0;
+        int ones=0;
+        for(int i=0;i<2*n;i+=2){
+            int x,y;
+            cin>>x>>y;
+            if(x==0){
+                zeros++;
+            }
+            else{
+                ones++;
+            }
+            if(y==0){
+                zeros++;
+            }
+            else{
+                ones++;
+            }
+        }
+        int Size=2*n;
+        int x=0;
+        while(Size-(x*2)>ones-x && x<ones){
+                x++;
+        }
+
+cout << (ones % 2 == 0 ? 0 : 1) << " " << x << endl;
+
+
+    }
+
+    return 0;
+}
