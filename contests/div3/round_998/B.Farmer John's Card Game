@@ -1,0 +1,43 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n, m;
+        cin >> n >> m;
+        vector<vector<int>> M(n, vector<int>(m));
+        for (int i = 0; i < n; i++) {
+            for (int j = 0; j < m; j++) {
+                cin >> M[i][j];
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            sort(M[i].begin(), M[i].end());
+        }
+        bool invalid = false;
+        vector<pair<int, int>> P;
+        for (int i = 0; i < n; i++) {
+            P.push_back({M[i][0], i + 1});
+            for (int j = 0; j < m - 1; j++) {
+                if (M[i][j] + 1 == M[i][j + 1]) {
+                    invalid = true;
+                }
+            }
+        }
+        if (invalid && n!=1) {
+            cout << -1 << endl;
+            continue;
+        }
+        if(n==1){
+            cout<<1<<endl;
+            continue;
+        }
+        sort(P.begin(), P.end());
+        for (auto &p : P) {
+            cout << p.second << " ";
+        }
+        cout << endl;
+    }
+}
