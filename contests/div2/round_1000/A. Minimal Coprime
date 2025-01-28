@@ -1,0 +1,20 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t; // Input the number of test cases
+
+    while (t--) {
+        long long l, r;
+        cin >> l >> r; // Input l and r for each test case
+
+        if (l == 1 && r == 1) {
+            cout << 1 << endl;
+        } else {
+            cout << r - l << endl;
+        }
+    }
+
+    return 0;
+}
