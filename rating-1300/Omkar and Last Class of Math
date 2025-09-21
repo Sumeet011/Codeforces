@@ -1,0 +1,36 @@
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+void processTestCases(int t) {
+    while (t--) {
+        long long n;
+        cin >> n;
+
+        long long k = -1; // Initialize k
+        for (long long i = 1; i <= sqrt(n); ++i) {
+            if (n % (i + 1) == 0) {
+                k = i; // Smallest k found
+                break;
+            }
+        }
+
+        if (k == -1) {
+            k = n - 1; // Edge case: no divisor found up to sqrt(n)
+        }
+
+        // Calculate outputs
+        long long remainder = n / (k + 1);
+        long long product = remainder * k;
+
+        // Output results
+        cout << remainder << " " << product << endl;
+    }
+}
+
+int main() {
+    int t;
+    cin >> t; // Number of test cases
+    processTestCases(t);
+    return 0;
+}

@@ -1,0 +1,38 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        vector<int> P(n);
+        for (int i = 0; i < n; i++) {
+            cin >> P[i];
+        }
+
+        // Early exit if first element is greater than second element
+        if (P[0] > P[1]) {
+            cout << "NO" << endl;
+            continue;
+        }
+
+        // Process the elements based on the logic provided
+        bool ans = true;
+        P[1] = P[1] - P[0];  // Subtract P[0] from P[1]
+        P[0] = 0;  // Set the first element to 0
+
+        // Iterate over the rest of the elements
+        for (int i = 1; i < n - 1; i++) {
+            if (P[i] > P[i + 1]) {  // If current element is greater than the next one
+                ans = false;
+                break;
+            }
+            P[i + 1] = P[i + 1] - P[i];  // Subtract current element from next element
+            P[i] = 0;  // Set current element to 0
+        }
+
+        cout << (ans ? "YES" : "NO") << endl;
+    }
+}

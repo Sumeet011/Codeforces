@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main() {
+    int t;
+    cin >> t;
+    while (t--) {
+        int n,k;
+        cin>>n>>k;
+        vector<int> M(n);
+        unordered_map<int,int> MAP;
+        for(int i=0;i<n;i++){
+            cin>>M[i];
+            MAP[M[i]]++;
+        }
+        int ans=0;
+        for(int i=0;i<n;i++){
+            if(MAP[M[i]]>0){
+                if(MAP.find(k-M[i])!=MAP.end() && MAP[k-M[i]]!=0){
+                    if(k-M[i]==M[i] ){
+                        if(MAP[k-M[i]]>1){
+                         ans++;
+                    MAP[k-M[i]]--;
+                    MAP[M[i]]--;
+                        }
+                    }
+                    else{
+                    ans++;
+                    MAP[k-M[i]]--;
+                    MAP[M[i]]--;
+                    }
+                    
+                }
+            }
+        }
+                                                      
+        cout<<ans<<endl;
+        
+    }
+}
